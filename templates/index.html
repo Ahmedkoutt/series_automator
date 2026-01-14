@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SeriesLink Automator</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: white; padding: 20px; }
+        .episode-card { background: #1e1e1e; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+        .player-container { margin-top: 10px; position: relative; padding-bottom: 56.25%; height: 0; }
+        .player-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        h1 { border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .meta { color: #888; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <h1>Latest Episodes</h1>
+    {% for ep in episodes %}
+    <div class="episode-card">
+        <h2>{{ ep.series_name }} - {{ ep.episode_title }}</h2>
+        <p class="meta">Found on: {{ ep.created_at }}</p>
+        <div class="player-container">
+            <iframe src="{{ ep.clean_link }}" allowfullscreen></iframe>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>
